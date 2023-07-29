@@ -28,7 +28,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  cloud_firestore: ^4.8.4
   cupertino_icons: ^1.0.2
+  firebase_auth: ^4.7.2
+  firebase_core: ^2.15.0
   flutter:
     sdk: flutter
   flutter_launcher_icons: ^0.13.1
@@ -40,8 +43,7 @@ flutter_launcher_icons:
   ios: true
   image_path: "assets/aviatorgame.png"
   adaptive_icon_background: "assets/aviatorgame.png"
-  min_sdk_android: 19 # android min sdk
-
+  min_sdk_android: 21 # android min sdk
 
 dev_dependencies:
   flutter_lints: ^2.0.0

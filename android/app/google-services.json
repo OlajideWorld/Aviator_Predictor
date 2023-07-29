@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "707367224835",
+    "project_id": "aviatorpredictor-v4",
+    "storage_bucket": "aviatorpredictor-v4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:707367224835:android:00c10d7132c967dc6fb036",
+        "android_client_info": {
+          "package_name": "com.example.aviatorpredict"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "707367224835-u6nl27kdrq85ebhiugn3o7gvhubmoirr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr1AEdKL5uPlRm0xCxJuSxIzV17Oz9idU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "707367224835-u6nl27kdrq85ebhiugn3o7gvhubmoirr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

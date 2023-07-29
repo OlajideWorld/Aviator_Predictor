@@ -1,11 +1,13 @@
 import 'package:aviatorpredict/bindings/bindings.dart';
-import 'package:aviatorpredict/homePage/screens/homescreen.dart';
 import 'package:aviatorpredict/routes/routes.dart';
 import 'package:aviatorpredict/utils/size-config.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

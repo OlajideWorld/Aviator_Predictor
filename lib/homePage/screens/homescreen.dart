@@ -100,9 +100,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 SizedBox(height: heightSize(30)),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: widthSize(20)),
+                SizedBox(
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         "Join our Telegram: ",
