@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(
-              right: widthSize(10), left: widthSize(10), top: height * 0.3),
+              right: widthSize(20), left: widthSize(20), top: height * 0.3),
           child: SizedBox(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -78,18 +78,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   child: Container(
                     height: heightSize(52),
-                    width: widthSize(293),
+                    width: isLoading == true ? widthSize(52) : width,
                     padding: EdgeInsets.symmetric(vertical: heightSize(10)),
                     decoration: BoxDecoration(
                         color: redColor,
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(10))),
+                            const BorderRadius.all(Radius.circular(5))),
                     child: Center(
                         child: isLoading == true
-                            ? CircularProgressIndicator(
-                                color: Colors.black,
-                                strokeWidth: widthSize(2),
-                              )
+                            ? SizedBox(
+                              width: widthSize(35),
+                              child: CircularProgressIndicator(
+                                  color: Colors.black,
+                                  strokeWidth: widthSize(5),
+                                ),
+                            )
                             : Text(
                                 "Get Predictions",
                                 style: TextStyle(
@@ -99,7 +102,24 @@ class _HomeScreenState extends State<HomeScreen> {
                               )),
                   ),
                 ),
-                SizedBox(height: heightSize(30)),
+                SizedBox(height: heightSize(50)),
+                Container(
+                  height: heightSize(52),
+                  width: width,
+                  padding: EdgeInsets.symmetric(vertical: heightSize(10)),
+                  decoration: BoxDecoration(
+                      color: redColor,
+                      borderRadius: const BorderRadius.all(Radius.circular(5))),
+                  child: Center(
+                      child: Text(
+                    "Activate",
+                    style: TextStyle(
+                        fontSize: fontSize(18),
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black),
+                  )),
+                ),
+                SizedBox(height: heightSize(50)),
                 SizedBox(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

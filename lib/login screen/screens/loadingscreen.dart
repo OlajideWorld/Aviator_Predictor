@@ -11,9 +11,12 @@ class LoadingScreen extends StatelessWidget {
       child: Align(
         alignment: Alignment.center,
         child: SizedBox(
-          height: heightSize(70),
-          width: widthSize(70),
-          child: CircularProgressIndicator(color: redColor),
+          height: heightSize(50),
+          width: widthSize(50),
+          child: CircularProgressIndicator(
+            color: redColor,
+            strokeWidth: 7,
+          ),
         ),
       ),
     );
