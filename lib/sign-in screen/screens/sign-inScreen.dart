@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../homePage/controller/splashscreencontroller.dart';
+import '../../utils/getxmessage.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -98,9 +99,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           TextStyle(color: Colors.white.withOpacity(0.7)),
                       hintText: 'Enter UserName'),
                   validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter your username';
-                    }
+                    if (value!.isEmpty) {}
                     // You can add more username validation if needed
                     return null;
                   },
@@ -129,9 +128,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           TextStyle(color: Colors.white.withOpacity(0.7)),
                       hintText: 'Enter Email'),
                   validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter your Email';
-                    }
+                    if (value!.isEmpty) {}
                     // You can add more username validation if needed
                     return null;
                   },
@@ -161,9 +158,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           TextStyle(color: Colors.white.withOpacity(0.7)),
                       hintText: 'Enter Password'),
                   validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter your Password';
-                    }
+                    if (value!.isEmpty) {}
                     // You can add more username validation if needed
                     return null;
                   },
@@ -172,7 +167,10 @@ class _SignInScreenState extends State<SignInScreen> {
               SizedBox(height: heightSize(50)),
               GestureDetector(
                 onTap: () {
-                  if (_formKey.currentState!.validate()) {
+                  final value = _formKey.currentState!.validate();
+                  if (!value) {
+                    getErrorSnackBar("Please Enter your Credentials");
+                  } else {
                     controller.registerUser(
                         _emailController.text.trim(),
                         _usernameController.text.trim(),

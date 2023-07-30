@@ -21,8 +21,8 @@ class SplashController extends GetxController {
   }
 
   Future<void> signin(String email, String password) async {
+    Get.to(() => LoadingScreen());
     try {
-      Get.to(() => LoadingScreen());
       UserCredential userCredential =
           await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
@@ -31,17 +31,16 @@ class SplashController extends GetxController {
       getSuccessSnackBar("Sign in Successsful");
       Get.to(() => BetDisplayScreen());
     } catch (e) {
-      Get.back();
       getErrorSnackBar("Sign in Error, $e");
+      Get.back();
       debugPrint("Error in Sign in $e");
     }
   }
 
   Future<void> registerUser(
       String email, String username, String password) async {
+    Get.to(() => LoadingScreen());
     try {
-      Get.to(() => LoadingScreen());
-
       // Register the user with Firebase Authentication
       UserCredential userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(

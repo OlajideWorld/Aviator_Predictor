@@ -1,4 +1,5 @@
 import 'package:aviatorpredict/homePage/controller/splashscreencontroller.dart';
+import 'package:aviatorpredict/utils/getxmessage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -69,9 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextStyle(color: Colors.white.withOpacity(0.7)),
                       hintText: 'Enter Email'),
                   validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter your username';
-                    }
+                    if (value!.isEmpty) {}
 
                     // You can add more username validation if needed
                     return null;
@@ -102,9 +101,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextStyle(color: Colors.white.withOpacity(0.7)),
                       hintText: 'Enter Password'),
                   validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter your username';
-                    }
                     // You can add more username validation if needed
                     return null;
                   },
@@ -123,7 +119,10 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: heightSize(25)),
               GestureDetector(
                 onTap: () {
-                  if (_formKey.currentState!.validate()) {
+                  final value = _formKey.currentState!.validate();
+                  if (!value) {
+                    getErrorSnackBar("Please enter your Credentials");
+                  } else {
                     controller.signin(_emailController.text.trim(),
                         _passwordController.text.trim());
                   }
