@@ -15,7 +15,14 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  static const Duration stopDuration1 = Duration(seconds: 4);
+  static const Duration stopDuration2 = Duration(seconds: 3);
+
   Color redColor = const Color(0xFFE40639);
   late MyTimer myTimer;
   double _counter = 1.98;
@@ -23,14 +30,57 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    // myTimer = MyTimer(onUpdateCounter); // Initialize myTimer here
+    // Animation duration for one complete cycle (0.00 to 1.98 and back to 0.00)
+    const animationDuration = Duration(seconds: 7); // 4s stop + 3s stop
 
-    // myTimer.startTimer();
+    _controller = AnimationController(
+      vsync: this,
+      duration: animationDuration,
+    );
+
+    // Create a custom animation curve using TweenSequence
+    _animation = TweenSequence<double>([
+      TweenSequenceItem<double>(
+        tween: Tween<double>(begin: 0.00, end: 1.98),
+        weight: 0.571, // 4 seconds (4s / 7s)
+      ),
+      TweenSequenceItem<double>(
+        tween: ConstantTween<double>(1.98),
+        weight: 0.286, // 2 seconds (2s / 7s)
+      ),
+      TweenSequenceItem<double>(
+        tween: Tween<double>(begin: 1.98, end: 0.00),
+        weight: 0.143, // 1 second (1s / 7s)
+      ),
+    ]).animate(_controller);
+
+    // Listen to animation status and restart the animation when it completes.
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        // Wait for 3 seconds before reversing the animation
+        Future.delayed(stopDuration2, () {
+          _controller.reverse();
+        });
+      } else if (status == AnimationStatus.dismissed) {
+        // Wait for 4 seconds before forwarding the animation
+        Future.delayed(stopDuration1, () {
+          _controller.forward();
+        });
+      }
+    });
+
+    // Start the animation
+    _controller.forward();
   }
+
+  // myTimer = MyTimer(onUpdateCounter); // Initialize myTimer here
+
+  // myTimer.startTimer();
 
   @override
   void dispose() {
-    myTimer.stopTimer();
+    _controller.dispose();
+    // myTimer.stopTimer();
     super.dispose();
   }
 
@@ -64,15 +114,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       fit: BoxFit.fill,
                     ),
                   ),
-                  SizedBox(height: heightSize(40)),
-                  Text(
-                    "${_counter}x",
-                    style: TextStyle(
-                        fontSize: fontSize(100),
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600),
+                  SizedBox(height: heightSize(60)),
+                  AnimatedBuilder(
+                    animation: _controller,
+                    builder: (context, child) {
+                      return Text(
+                        "${_animation.value.toStringAsFixed(2)}x", // Display value with 2 decimal places
+                        style:
+                            const TextStyle(fontSize: 60, color: Colors.white),
+                      );
+                    },
                   ),
-                  SizedBox(height: heightSize(40)),
                 ],
               ),
             ),

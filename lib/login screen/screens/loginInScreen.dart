@@ -168,30 +168,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: heightSize(70)),
-              SizedBox(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Join our Telegram: ",
-                      style: TextStyle(
-                          fontSize: fontSize(14),
-                          fontWeight: FontWeight.w300,
-                          color: Colors.white),
-                    ),
-                    SizedBox(width: widthSize(5)),
-                    Text(
-                      "https://www.heml.bg/upload/23749jnxyd890ojn",
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontSize: fontSize(14),
-                          fontWeight: FontWeight.w300,
-                          color: redColor),
-                    )
-                  ],
-                ),
-              )
             ]),
           ),
         ),
